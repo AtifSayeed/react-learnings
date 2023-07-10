@@ -1,32 +1,21 @@
-import {useState} from 'react';
-import './App.css';
+import {useEffect} from "react";
+//6bf109c7
+const API_URL = 'http://www.omdbapi.com/?apikey=6bf109c7';
 
 const App = () => {
-  // const name = "Atif";
-  // const Person = (props)=>{
-  //   return(
-  //     <>
-  //     <h1>Name: {props.name}</h1>
-  //     <h1>Cleareness: YES</h1>
-  //     <h1>Gender: MALE</h1>
-  //     </>
-  //   );
-  // }
-  // return (
-  //   <div className="App">
-  //     <h1>Hello, {name}  </h1>
-  //     <Person name={'Johnson'}/>
-  //   </div>
-  // );
-  const [ counter, setCounter] = useState(0);
-  return(
-    <div className = "App">
-      <button onClick={()=>setCounter((prevCount)=> prevCount - 1)}>-</button>
-      <h1>{counter}</h1>
-      <button onClick={()=>setCounter((prevCount)=> prevCount + 1)}>+</button>
-    </div>
-  )
- }
+  const searchMOvie =async(title)=>{
+    const response = await fetch(`${API_URL}&s=${title}`);
+    const data = await response.json();
+    console.log(data.Search);
+  }
+  useEffect(()=>{
+    searchMOvie('Spiderman')
 
+    },[])
+
+  return (
+  <h1>App</h1>
+  )
+};
 
 export default App;
